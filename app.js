@@ -42,11 +42,16 @@ addSubject.addEventListener('click', () => {
 
 		subjectData.map((item) => {
 			subjectContainer.innerHTML = `
-            <div class="subject shadow rounded my-3 p-3">
-                <h3>${item.subjectName}</h3>
-                <small>${item.subjectTest.length} Lessons</small>
-                <small>${item.subjectStudents.length} Assignments</small>
-                <small>${item.subjectActivities.length} Students</small>
+            <div class="subject shadow rounded my-3 p-3 d-flex justify-content-between align-items-center flex-wrap ">
+				<div>
+					<h3>${item.subjectName}</h3>
+					<small>${item.subjectTest.length} Lessons</small>
+					<small>${item.subjectStudents.length} Assignments</small>
+					<small>${item.subjectActivities.length} Students</small>
+				</div>
+				<div class="mt-3">
+					<button type="button" class="view-subject btn btn-primary">View subject</button>
+				</div>
             </div>
         `;
 		});
@@ -57,3 +62,19 @@ addSubject.addEventListener('click', () => {
 	subjectNameHolder.value = '';
 	subjectCode.value = '';
 });
+
+const viewSubject = () => {
+	const viewSubjectButton = document.getElementsByClassName('view-subject');
+
+	console.log(viewSubjectButton);
+
+	for (var i = 0; i < viewSubjectButton.length; i++) {
+		const button = viewSubjectButton[i];
+
+		button.addEventListener('click', () => {
+			console.log('hi');
+		});
+	}
+};
+
+viewSubject();
