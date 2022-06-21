@@ -21,6 +21,8 @@ generateCode.addEventListener('click', () => {
 });
 
 addSubject.addEventListener('click', () => {
+	console.log(subjectData);
+
 	const subjectContainer = document.createElement('div');
 
 	if (
@@ -50,7 +52,9 @@ addSubject.addEventListener('click', () => {
 					<small>${item.subjectActivities.length} Students</small>
 				</div>
 				<div class="mt-3">
-					<button type="button" class="view-subject btn btn-primary">View subject</button>
+					
+						<button type="button" id="view-subject" class="btn btn-primary">View subject</button>
+					
 				</div>
             </div>
         `;
@@ -59,22 +63,23 @@ addSubject.addEventListener('click', () => {
 		subjectHolder.appendChild(subjectContainer);
 	}
 
+	const viewSubjectButton = document.getElementById('view-subject');
+
+	viewSubjectButton.addEventListener('click', () => {
+		const subjectName =
+			viewSubjectButton.parentElement.parentElement.children[0].children[0]
+				.innerHTML;
+
+		const subjectId = subjectData.map((item) => {
+			if (item.subjectName === subjectName) {
+				return item.subjectId;
+			}
+		});
+
+		localStorage.setItem('subjectId', subjectId[0]);
+		location.href = './SubjectPage.html';
+	});
+
 	subjectNameHolder.value = '';
 	subjectCode.value = '';
 });
-
-const viewSubject = () => {
-	const viewSubjectButton = document.getElementsByClassName('view-subject');
-
-	console.log(viewSubjectButton);
-
-	for (var i = 0; i < viewSubjectButton.length; i++) {
-		const button = viewSubjectButton[i];
-
-		button.addEventListener('click', () => {
-			console.log('hi');
-		});
-	}
-};
-
-viewSubject();
