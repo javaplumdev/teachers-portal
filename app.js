@@ -21,8 +21,6 @@ generateCode.addEventListener('click', () => {
 });
 
 addSubject.addEventListener('click', () => {
-	console.log(subjectData);
-
 	const subjectContainer = document.createElement('div');
 
 	if (
@@ -42,7 +40,12 @@ addSubject.addEventListener('click', () => {
 			subjectActivities: [],
 		});
 
-		subjectData.map((item) => {
+		localStorage.setItem('subject', JSON.stringify(subjectData));
+
+		const subjectDataStorage = localStorage.getItem('subject');
+		const subjectDataStorageFinal = JSON.parse(subjectDataStorage);
+
+		subjectDataStorageFinal.map((item) => {
 			subjectContainer.innerHTML = `
             <div class="subject shadow rounded my-3 p-3 d-flex justify-content-between align-items-center flex-wrap ">
 				<div>
@@ -77,6 +80,7 @@ addSubject.addEventListener('click', () => {
 		});
 
 		localStorage.setItem('subjectId', subjectId[0]);
+
 		location.href = './SubjectPage.html';
 	});
 
